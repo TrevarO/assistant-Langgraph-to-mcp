@@ -1,0 +1,1 @@
+from .config import MCP_SERVER_CONFIG  # Makes MCP_SERVER_CONFIG available at package level
