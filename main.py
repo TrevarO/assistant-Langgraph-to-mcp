@@ -96,17 +96,13 @@ async def main():
             workflow = create_workflow(MCP_SERVER_CONFIG)
             
             # Initialize state with proper structure
-            logger.debug("Setting up initial state")
             try:
                 # Create initial state
                 state = GraphState.create_initial()
-                logger.debug(f"Initial state created: {state}")
 
                 # Validate initial state
                 if not GraphState.validate(state):
-                    logger.error("Initial state validation failed")
                     raise ValueError("Invalid initial state structure")
-                logger.debug("Initial state validation passed")
 
                 # Initialize workflow
                 workflow = create_workflow(MCP_SERVER_CONFIG)
