@@ -135,8 +135,6 @@ def create_workflow(config: Dict[str, Any]):
 
     Always provide actual data and facts, not just URLs or references.""")
 
-            # Debug pre-invoke state
-            logger.debug(f"Processing query: {latest_message.content}")
             
             try:
                 # Transform input for agent
@@ -153,15 +151,8 @@ def create_workflow(config: Dict[str, Any]):
                     }
                 }
 
-                # Debug the search process
-                logger.debug(f"Agent input prepared")
                 
                 response = await agent.ainvoke(agent_input)
-                
-                # Debug search results
-                if isinstance(response, dict) and "intermediate_steps" in response:
-                    for step in response.get("intermediate_steps", []):
-                        logger.debug(f"Search result snippet: {step[1][:200]}...")  # First 200 chars
 
             except Exception as agent_error:
                 logger.error(f"Agent invoke error: {str(agent_error)}")
